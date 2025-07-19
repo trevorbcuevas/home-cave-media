@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coastal Scale Agency</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f172a;
+      --accent: #38bdf8;
+      --bg-light: #f8fafc;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--primary);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      background-color: #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 4rem 2rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .video-thumb {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      border-radius: 16px;
+      overflow: hidden;
+      background-color: #fff;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .video-thumb:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .video-thumb img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 16px;
+    }
+
+    /* Dark overlay on hover */
+    .video-thumb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0);
+      transition: background 0.3s ease;
+      border-radius: 16px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .video-thumb:hover::after {
+      background: rgba(0, 0, 0, 0.15);
+    }
+
+    /* "Watch Now" text */
+    .video-thumb::before {
+      content: "Watch Now";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 600;
+      font-size: 1rem;
+      text-shadow: 0 0 4px rgba(0,0,0,0.3);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      z-index: 2;
+      white-space: nowrap;
+    }
+
+    .video-thumb:hover::before {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.75rem 2rem;
+      background-color: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background-color: #1e293b;
+    }
+
+    .section {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+      background-color: #fff;
+      border-radius: 20px;
+      margin-bottom: 4rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+      box-sizing: border-box;
+    }
+
+    .section h2 {
+      font-size: 2.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section p, .section ul {
+      color: #444;
+      line-height: 1.8;
+      font-size: 1.125rem;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+    }
+
+    footer {
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #999;
+      background-color: #fff;
+      border-top: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Coastal Scale</div>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="video-grid">
+    <div class="video-thumb">
+      <img src="https://via.placeholder.com/640x360?text=Client+Video+1" alt="Client Video 1" />
+    </div>
+    <div class="video-thumb">
+      <img src="https://via.placeholder.com/640x360?text=Client+Video+2" alt="Client Video 2" />
+    </div>
+    <div class="video-thumb">
+      <img src="https://via.placeholder.com/640x360?text=Client+Video+3" alt="Client Video 3" />
+    </div>
+    <div class="video-thumb">
+      <img src="https://via.placeholder.com/640x360?text=Client+Video+4" alt="Client Video 4" />
+    </div>
+    <div class="video-thumb">
+      <img src="https://via.placeholder.com/640x360?text=Client+Video+5" alt="Client Video 5" />
+    </div>
+    <div class="video-thumb">
+      <img src="https://via.placeholder.com/640x360?text=Client+Video+6" alt="Client Video 6" />
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <h2>What We Do</h2>
+    <p>
+      We specialize in full-funnel marketing for modern brands. Our services include:
+    </p>
+    <ul>
+      <li>
+        🎩 Premium Video Production
+        <p style="font-size: 0.85em; font-style: italic; margin: 0.2em 0 1em 1.5em;">
+          Create high-quality videos that capture attention, tell your brand story, and drive engagement across platforms.
+        </p>
+      </li>
+      <li>
+        📈 Paid Ad Management (Meta, Google, TikTok)
+        <p style="font-size: 0.85em; font-style: italic; margin: 0.2em 0 1em 1.5em;">
+          Optimize your ad spend by targeting the right audience on top platforms, increasing conversions and maximizing ROI.
+        </p>
+      </li>
+      <li>
+        🌊 Brand Strategy & Creative Consulting
+        <p style="font-size: 0.85em; font-style: italic; margin: 0.2em 0 1em 1.5em;">
+          Develop a clear brand identity and creative direction that differentiates you in the market and builds lasting customer loyalty.
+        </p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section" id="about">
+    <h2>About Us</h2>
+    <p>
+      We're a two-man team of creatives and strategists passionate about crafting clean, effective marketing. With deep roots in California's coast and a background in scaling local and national brands, we're built for results and aesthetics alike.
+    </p>
+  </section>
+
+  <section class="section" id="contact">
+    <h2>Let’s Connect</h2>
+    <p>
+      Email us at <a href="mailto:hello@coastalscale.com">hello@coastalscale.com</a> or message us on Instagram @coastalscale.
+    </p>
+    <a class="btn" href="mailto:hello@coastalscale.com">Get In Touch</a>
+  </section>
+
+  <footer>
+    &copy; 2025 Coastal Scale. All rights reserved.
+  </footer>
+</body>
+</html>
