@@ -4,132 +4,148 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Coastal Scale Agency</title>
+
+  <!-- Importing the 'Inter' font from Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
+    /* Root CSS variables for consistent colors */
     :root {
-      --primary: #0f172a;
-      --accent: #38bdf8;
-      --bg-light: #f8fafc;
+      --primary: #0f172a;   /* Dark blue-ish color used for text and buttons */
+      --accent: #38bdf8;    /* Bright blue accent color */
+      --bg-light: #f8fafc;  /* Very light background color */
     }
 
+    /* Basic styles for the entire page */
     body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-light);
-      color: var(--primary);
-      -webkit-font-smoothing: antialiased;
+      margin: 0;  /* Remove default margin */
+      font-family: 'Inter', sans-serif; /* Use Inter font */
+      background-color: var(--bg-light); /* Light background */
+      color: var(--primary);  /* Dark text color */
+      -webkit-font-smoothing: antialiased; /* Smoother font rendering */
     }
 
+    /* Header bar at the top */
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 2rem;
-      background-color: #fff;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      display: flex;                /* Use flexbox for layout */
+      justify-content: space-between; /* Space between logo and nav links */
+      align-items: center;          /* Vertically center items */
+      padding: 1.5rem 2rem;         /* Top/bottom and left/right padding */
+      background-color: #fff;       /* White background */
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); /* Light shadow below */
+      position: sticky;             /* Stick to top when scrolling */
+      top: 0;                      /* Position at top of page */
+      z-index: 100;                /* Make sure it stays on top */
     }
 
+    /* Logo text styles */
     .logo {
-      font-weight: 800;
-      font-size: 1.5rem;
-      color: var(--primary);
+      font-weight: 800;  /* Extra bold */
+      font-size: 1.5rem; /* Larger font size */
+      color: var(--primary); /* Dark color */
     }
 
+    /* Navigation links container */
     nav a {
-      margin-left: 2rem;
-      text-decoration: none;
-      color: var(--primary);
-      font-weight: 500;
-      transition: color 0.2s;
+      margin-left: 2rem;            /* Space between links */
+      text-decoration: none;        /* Remove underline */
+      color: var(--primary);        /* Dark text */
+      font-weight: 500;             /* Medium weight */
+      transition: color 0.2s;       /* Smooth color transition on hover */
     }
 
+    /* Hover effect for nav links */
     nav a:hover {
-      color: var(--accent);
+      color: var(--accent);         /* Change to accent color */
     }
 
+    /* Video thumbnails grid container */
     .video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      padding: 4rem 2rem 2rem;
-      max-width: 1200px;
-      margin: auto;
+      display: grid;                    /* Use CSS grid */
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+      gap: 2rem;                       /* Space between thumbnails */
+      padding: 4rem 2rem 2rem;         /* Padding around the grid */
+      max-width: 1200px;               /* Max width */
+      margin: auto;                    /* Center horizontally */
     }
 
+    /* Individual video thumbnail container */
     .video-thumb {
-      position: relative;
-      width: 100%;
-      padding-bottom: 56.25%; /* 16:9 aspect ratio */
-      border-radius: 16px;
-      overflow: hidden;
-      background-color: #fff;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
+      position: relative;              /* For positioning child elements */
+      width: 100%;                    /* Full width of grid cell */
+      padding-bottom: 56.25%;         /* 16:9 aspect ratio height based on width */
+      border-radius: 16px;            /* Rounded corners */
+      overflow: hidden;               /* Crop overflow */
+      background-color: #fff;         /* White background */
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05); /* Soft shadow */
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+      cursor: pointer;                /* Pointer cursor on hover */
     }
 
+    /* Hover effect lifts the thumbnail and intensifies shadow */
     .video-thumb:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      transform: translateY(-8px);    /* Lift up */
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); /* Stronger shadow */
     }
 
+    /* The video image inside the thumbnail */
     .video-thumb img {
-      position: absolute;
+      position: absolute;            /* Position over parent */
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      width: 100%;                  /* Full width */
+      height: 100%;                 /* Full height */
+      object-fit: cover;            /* Crop/scale nicely */
       display: block;
-      border-radius: 16px;
+      border-radius: 16px;          /* Rounded corners matching parent */
     }
 
-    /* Dark overlay on hover */
+    /* Dark overlay effect on hover */
     .video-thumb::after {
       content: "";
       position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0);
+      inset: 0;                   /* Fill parent */
+      background: rgba(0, 0, 0, 0); /* Transparent by default */
       transition: background 0.3s ease;
       border-radius: 16px;
-      pointer-events: none;
-      z-index: 1;
+      pointer-events: none;       /* Don't block clicks */
+      z-index: 1;                 /* Behind "Watch Now" text */
     }
 
+    /* Dark overlay becomes visible on hover */
     .video-thumb:hover::after {
       background: rgba(0, 0, 0, 0.15);
     }
 
-    /* "Watch Now" text */
+    /* "Watch Now" text that appears on hover */
     .video-thumb::before {
       content: "Watch Now";
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
-      color: rgba(255, 255, 255, 0.85);
+      transform: translate(-50%, -50%); /* Center text */
+      color: rgba(255, 255, 255, 0.85); /* White text */
       font-weight: 600;
       font-size: 1rem;
       text-shadow: 0 0 4px rgba(0,0,0,0.3);
-      opacity: 0;
-      pointer-events: none;
+      opacity: 0;              /* Hidden by default */
+      pointer-events: none;    /* Don't block mouse */
       transition: opacity 0.25s ease;
-      z-index: 2;
-      white-space: nowrap;
+      z-index: 2;              /* Above overlay */
+      white-space: nowrap;     /* Prevent text wrap */
     }
 
+    /* Show the text on hover */
     .video-thumb:hover::before {
       opacity: 1;
       pointer-events: auto;
     }
 
+    /* Button styles */
     .btn {
       display: inline-block;
-      margin-top: 2rem;
-      padding: 0.75rem 2rem;
+      margin-top: 2rem;              /* Space above button */
+      padding: 0.75rem 2rem;         /* Top/bottom and left/right padding */
       background-color: var(--primary);
       color: #fff;
       border: none;
@@ -140,56 +156,77 @@
       text-decoration: none;
     }
 
+    /* Button hover effect */
     .btn:hover {
       background-color: #1e293b;
     }
 
+    /* Sections on the page */
     .section {
-      padding: 6rem 2rem;
-      max-width: 1200px;
-      margin: auto;
-      background-color: #fff;
-      border-radius: 20px;
-      margin-bottom: 4rem;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
-      box-sizing: border-box;
+      padding: 3rem 2rem;           /* Top/bottom and left/right padding - reduced vertical space */
+      max-width: 1200px;            /* Limit width */
+      margin: auto;                 /* Center horizontally */
+      background-color: #fff;       /* White background */
+      border-radius: 20px;          /* Rounded corners */
+      margin-bottom: 2rem;          /* Space below each section */
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04); /* Subtle shadow */
+      box-sizing: border-box;       /* Include padding in width */
     }
 
+    /* Headings inside sections */
     .section h2 {
-      font-size: 2.25rem;
-      margin-bottom: 1.5rem;
+      font-size: 2.25rem;           /* Large heading */
+      margin-bottom: 1rem;          /* Space below heading */
     }
 
-    .section p, .section ul {
-      color: #444;
-      line-height: 1.8;
-      font-size: 1.125rem;
+    /* Paragraphs and lists inside sections */
+    .section p,
+    .section ul {
+      color: #444;                  /* Medium gray text */
+      line-height: 1.6;             /* Line height for readability */
+      font-size: 1.125rem;          /* Slightly larger text */
+      margin-top: 0;                /* Remove default top margin */
+      margin-bottom: 1rem;          /* Space below */
     }
 
+    /* Unordered lists have left padding */
     ul {
       padding-left: 1.5rem;
     }
 
+    /* Smaller italic paragraphs inside list items */
+    .section ul li p {
+      margin: 0.1em 0 0.5em 1.5em; /* Top, bottom, left margins */
+      font-size: 0.85em;            /* Smaller font size */
+      font-style: italic;
+    }
+
+    /* Footer styles */
     footer {
-      padding: 2rem;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #999;
-      background-color: #fff;
-      border-top: 1px solid #eee;
+      padding: 2rem;                /* Padding around text */
+      text-align: center;           /* Center text */
+      font-size: 0.9rem;            /* Smaller font size */
+      color: #999;                  /* Light gray text */
+      background-color: #fff;       /* White background */
+      border-top: 1px solid #eee;  /* Top border */
     }
   </style>
 </head>
 <body>
+
+  <!-- Header section containing the logo and navigation links -->
   <header>
     <div class="logo">Coastal Scale</div>
+
     <nav>
+      <!-- Navigation links to sections on the page -->
       <a href="#services">Services</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
+  <!-- Video thumbnails grid -->
   <section class="video-grid">
     <div class="video-thumb">
       <img src="https://via.placeholder.com/640x360?text=Client+Video+1" alt="Client Video 1" />
@@ -211,6 +248,7 @@
     </div>
   </section>
 
+  <!-- Services Section -->
   <section class="section" id="services">
     <h2>What We Do</h2>
     <p>
@@ -219,25 +257,26 @@
     <ul>
       <li>
         🎩 Premium Video Production
-        <p style="font-size: 0.85em; font-style: italic; margin: 0.2em 0 1em 1.5em;">
+        <p>
           Create high-quality videos that capture attention, tell your brand story, and drive engagement across platforms.
         </p>
       </li>
       <li>
         📈 Paid Ad Management (Meta, Google, TikTok)
-        <p style="font-size: 0.85em; font-style: italic; margin: 0.2em 0 1em 1.5em;">
+        <p>
           Optimize your ad spend by targeting the right audience on top platforms, increasing conversions and maximizing ROI.
         </p>
       </li>
       <li>
         🌊 Brand Strategy & Creative Consulting
-        <p style="font-size: 0.85em; font-style: italic; margin: 0.2em 0 1em 1.5em;">
+        <p>
           Develop a clear brand identity and creative direction that differentiates you in the market and builds lasting customer loyalty.
         </p>
       </li>
     </ul>
   </section>
 
+  <!-- About Section -->
   <section class="section" id="about">
     <h2>About Us</h2>
     <p>
@@ -245,6 +284,7 @@
     </p>
   </section>
 
+  <!-- Contact Section -->
   <section class="section" id="contact">
     <h2>Let’s Connect</h2>
     <p>
@@ -253,8 +293,6 @@
     <a class="btn" href="mailto:hello@coastalscale.com">Get In Touch</a>
   </section>
 
+  <!-- Footer at the bottom of the page -->
   <footer>
-    &copy; 2025 Coastal Scale. All rights reserved.
-  </footer>
-</body>
-</html>
+    &copy; 2025 Coastal Scale. All rights reserved
