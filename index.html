@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Coastal Scale Agency</title>
 
-  <!-- Importing the 'Inter' font from Google Fonts -->
+  <!-- Google Font: Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
   <style>
@@ -105,28 +105,6 @@
       background: rgba(0, 0, 0, 0.15);
     }
 
-    .video-thumb::before {
-      content: "Explore";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: rgba(255, 255, 255, 0.85);
-      font-weight: 600;
-      font-size: 1rem;
-      text-shadow: 0 0 4px rgba(0,0,0,0.3);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-      z-index: 2;
-      white-space: nowrap;
-    }
-
-    .video-thumb:hover::before {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
     .btn {
       display: inline-block;
       margin-top: 2rem;
@@ -176,7 +154,7 @@
 
     .section ul li p {
       margin: 0.1em 0 0.5em 1.5em;
-      font-size: 0.85em;
+      font-size: 0.95em;
       font-style: italic;
     }
 
@@ -190,8 +168,10 @@
     }
   </style>
 </head>
+
 <body>
 
+  <!-- Header -->
   <header>
     <div class="logo">Coastal Scale</div>
     <nav>
@@ -201,7 +181,7 @@
     </nav>
   </header>
 
-  <!-- Industries We Scale -->
+  <!-- Industries Grid -->
   <section class="video-grid">
     <div class="video-thumb">
       <img src="https://via.placeholder.com/640x360?text=Tourism+%26+Travel" alt="Tourism and Travel" />
@@ -223,7 +203,7 @@
     </div>
   </section>
 
-  <!-- Services Section -->
+  <!-- Services -->
   <section class="section" id="services">
     <h2>What We Do</h2>
     <p>
@@ -243,15 +223,15 @@
         </p>
       </li>
       <li>
-        Brand Strategy & Creative Consulting
+        Social Media Promotion & Lead Tracking
         <p>
-          Develop a clear brand identity and creative direction that differentiates you in the market and builds lasting customer loyalty.
+          We grow brands by creating scroll-stopping content and promoting it across social platforms — while tracking leads and engagement to measure real growth.
         </p>
       </li>
     </ul>
   </section>
 
-  <!-- About Section -->
+  <!-- About -->
   <section class="section" id="about">
     <h2>About Us</h2>
     <p>
@@ -259,7 +239,7 @@
     </p>
   </section>
 
-  <!-- Contact Section -->
+  <!-- Contact -->
   <section class="section" id="contact">
     <h2>Let’s Connect</h2>
     <p>
@@ -270,7 +250,7 @@
 
   <!-- Footer -->
   <footer>
-    &copy; 2025 Coastal Scale. All rights reserved
+    &copy; 2025 Coastal Scale. All rights reserved.
   </footer>
 
 </body>
