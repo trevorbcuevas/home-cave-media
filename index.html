@@ -6,7 +6,7 @@
   <title>Coastal Scale Agency</title>
 
   <!-- Google Font: Inter -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
 
   <style>
     :root {
@@ -101,6 +101,7 @@
       object-fit: cover;
       display: block;
       border-radius: 16px;
+      background-color: black;
     }
 
     .video-thumb::after {
@@ -125,6 +126,12 @@
 
     .video-thumb.horizontal {
       padding-bottom: 56.25%; /* 16:9 */
+    }
+
+    /* Fullscreen adjustments */
+    video.fullscreen {
+      object-fit: contain !important;
+      background-color: black;
     }
 
     .btn {
@@ -192,7 +199,6 @@
 </head>
 
 <body>
-
   <!-- Header -->
   <header>
     <div class="logo">Coastal Scale</div>
@@ -217,21 +223,21 @@
   <section class="video-grid">
     <!-- Vertical Reels -->
     <div class="video-thumb vertical">
-      <video src="videos/reel1.mp4" muted loop playsinline></video>
+      <video src="videos/reel1.mp4" playsinline></video>
     </div>
     <div class="video-thumb vertical">
-      <video src="videos/reel2.mp4" muted loop playsinline></video>
+      <video src="videos/reel2.mp4" playsinline></video>
     </div>
     <div class="video-thumb vertical">
-      <video src="videos/reel3.mp4" muted loop playsinline></video>
+      <video src="videos/reel3.mp4" playsinline></video>
     </div>
 
     <!-- Horizontal Videos -->
     <div class="video-thumb horizontal">
-      <video src="videos/horizontal1.mp4" muted loop playsinline></video>
+      <video src="videos/horizontal1.mp4" playsinline></video>
     </div>
     <div class="video-thumb horizontal">
-      <video src="videos/horizontal2.mp4" muted loop playsinline></video>
+      <video src="videos/horizontal2.mp4" playsinline></video>
     </div>
   </section>
 
@@ -282,30 +288,37 @@
 
   <!-- Footer -->
   <footer>
-    &copy; 2025 Coastal Scale Agency
+    &copy; Coastal Scale Agency
   </footer>
 
   <script>
     document.querySelectorAll('.video-thumb video').forEach(video => {
-      // Make sure video is paused initially
+      // Pause and mute initially (for autoplay policies)
       video.pause();
+      video.muted = true;
 
       video.parentElement.addEventListener('click', async () => {
         if (video.paused) {
           try {
+            video.muted = false; // unmute on user interaction
             await video.play();
+
             if (video.requestFullscreen) {
               await video.requestFullscreen();
-            } else if (video.webkitRequestFullscreen) { /* Safari */
+            } else if (video.webkitRequestFullscreen) {
               await video.webkitRequestFullscreen();
-            } else if (video.msRequestFullscreen) { /* IE11 */
+            } else if (video.msRequestFullscreen) {
               await video.msRequestFullscreen();
             }
+
+            video.classList.add('fullscreen');
           } catch (err) {
             console.error("Fullscreen or play request failed:", err);
           }
         } else {
           video.pause();
+          video.muted = true;
+
           if (document.fullscreenElement || document.webkitFullscreenElement) {
             if (document.exitFullscreen) {
               document.exitFullscreen();
@@ -313,10 +326,27 @@
               document.webkitExitFullscreen();
             }
           }
+
+          video.classList.remove('fullscreen');
+        }
+      });
+
+      // Remove fullscreen class and mute video if fullscreen exited manually
+      document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) {
+          video.classList.remove('fullscreen');
+          video.muted = true;
+          video.pause();
+        }
+      });
+      document.addEventListener('webkitfullscreenchange', () => {
+        if (!document.webkitFullscreenElement) {
+          video.classList.remove('fullscreen');
+          video.muted = true;
+          video.pause();
         }
       });
     });
   </script>
-
 </body>
 </html>
