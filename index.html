@@ -96,10 +96,11 @@
     .video-thumb img {
       display: block;
       width: 100%;
-      height: 100%;
+      height: auto; /* Maintain natural aspect ratio */
       object-fit: cover;
       border-radius: 16px;
       user-select: none;
+      pointer-events: none;
     }
 
     /* Video initially hidden */
@@ -178,68 +179,6 @@
       object-fit: contain !important;
       background-color: black;
     }
-
-    .btn {
-      display: inline-block;
-      margin-top: 2rem;
-      padding: 0.75rem 2rem;
-      background-color: var(--primary);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      text-decoration: none;
-    }
-
-    .btn:hover {
-      background-color: #1e293b;
-    }
-
-    .section {
-      padding: 3rem 2rem;
-      max-width: 1200px;
-      margin: auto;
-      background-color: #fff;
-      border-radius: 20px;
-      margin-bottom: 2rem;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
-      box-sizing: border-box;
-    }
-
-    .section h2 {
-      font-size: 2.25rem;
-      margin-bottom: 1rem;
-    }
-
-    .section p,
-    .section ul {
-      color: #444;
-      line-height: 1.6;
-      font-size: 1.125rem;
-      margin-top: 0;
-      margin-bottom: 1rem;
-    }
-
-    ul {
-      padding-left: 1.5rem;
-    }
-
-    .section ul li p {
-      margin: 0.1em 0 0.5em 1.5em;
-      font-size: 0.95em;
-      font-style: italic;
-    }
-
-    footer {
-      padding: 2rem;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #999;
-      background-color: #fff;
-      border-top: 1px solid #eee;
-    }
   </style>
 </head>
 
@@ -265,64 +204,94 @@
   </section>
 
   <!-- Video Grid -->
-  <section class="video-grid">
+  <section class="video-grid" id="videoGrid">
     <!-- Vertical Reels -->
     <div class="video-thumb vertical" data-video="reel1">
       <img src="thumbnails/reel1.jpg" alt="Reel 1 thumbnail" draggable="false" />
-      <video src="videos/reel1.mp4" playsinline></video>
+      <video src="videos/reel1.mp4" playsinline muted></video>
       <div class="overlay">Click to Watch</div>
     </div>
     <div class="video-thumb vertical" data-video="reel2">
       <img src="thumbnails/reel2.jpg" alt="Reel 2 thumbnail" draggable="false" />
-      <video src="videos/reel2.mp4" playsinline></video>
+      <video src="videos/reel2.mp4" playsinline muted></video>
       <div class="overlay">Click to Watch</div>
     </div>
     <div class="video-thumb vertical" data-video="reel3">
       <img src="thumbnails/reel3.jpg" alt="Reel 3 thumbnail" draggable="false" />
-      <video src="videos/reel3.mp4" playsinline></video>
+      <video src="videos/reel3.mp4" playsinline muted></video>
       <div class="overlay">Click to Watch</div>
     </div>
 
     <!-- Horizontal Videos -->
     <div class="video-thumb horizontal" data-video="horizontal1">
       <img src="thumbnails/horizontal1.jpg" alt="Horizontal 1 thumbnail" draggable="false" />
-      <video src="videos/horizontal1.mp4" playsinline></video>
+      <video src="videos/horizontal1.mp4" playsinline muted></video>
       <div class="overlay">Click to Watch</div>
     </div>
     <div class="video-thumb horizontal" data-video="horizontal2">
       <img src="thumbnails/horizontal2.jpg" alt="Horizontal 2 thumbnail" draggable="false" />
-      <video src="videos/horizontal2.mp4" playsinline></video>
+      <video src="videos/horizontal2.mp4" playsinline muted></video>
       <div class="overlay">Click to Watch</div>
     </div>
   </section>
 
-  <!-- Services -->
-  <section class="section" id="services">
-    <h2>What We Do</h2>
-    <p>We specialize in full-funnel marketing for modern brands. Our services include:</p>
-    <ul>
-      <li>
-        Premium Video Production
-        <p>Create high-quality videos that capture attention, tell your brand story, and drive engagement across platforms.</p>
-      </li>
-      <li>
-        Paid Ad Management (Meta, Google, TikTok)
-        <p>Optimize your ad spend by targeting the right audience on top platforms, increasing conversions and maximizing ROI.</p>
-      </li>
-      <li>
-        Social Media Promotion & Lead Tracking
-        <p>We grow brands by creating scroll-stopping content and promoting it across social platforms — while tracking leads and engagement to measure real growth.</p>
-      </li>
-    </ul>
-  </section>
+  <script>
+    (() => {
+      const videoGrid = document.getElementById('videoGrid');
 
-  <!-- About -->
-  <section class="section" id="about">
-    <h2>About Us</h2>
-    <p>We're a two-man team of creatives and strategists passionate about crafting clean, effective marketing. With deep roots in California's coast and a background in scaling local and national brands, we're built for results and aesthetics alike.</p>
-  </section>
+      function resetAllVideos() {
+        document.querySelectorAll('.video-thumb.playing').forEach(container => {
+          const video = container.querySelector('video');
+          video.pause();
+          video.currentTime = 0;
+          container.classList.remove('playing');
+          if (document.fullscreenElement === video) {
+            document.exitFullscreen();
+          }
+        });
+      }
 
-  <!-- Contact -->
-  <section class="section" id="contact">
-    <h2>Let’s Connect</h2>
-    <p
+      videoGrid.addEventListener('click', (e) => {
+        const thumb = e.target.closest('.video-thumb');
+        if (!thumb) return;
+
+        // If already playing, do nothing
+        if (thumb.classList.contains('playing')) return;
+
+        resetAllVideos();
+
+        const video = thumb.querySelector('video');
+        thumb.classList.add('playing');
+
+        video.muted = false; // unmute on play
+        video.play();
+
+        if (video.requestFullscreen) {
+          video.requestFullscreen();
+        } else if (video.webkitRequestFullscreen) {
+          video.webkitRequestFullscreen();
+        } else if (video.msRequestFullscreen) {
+          video.msRequestFullscreen();
+        }
+
+        // Add fullscreen class for styling
+        video.classList.add('fullscreen');
+      });
+
+      // Exit fullscreen or click outside any video resets the playing video
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.video-thumb')) {
+          resetAllVideos();
+        }
+      });
+
+      // Also reset when exiting fullscreen (user presses ESC or exits)
+      document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) {
+          resetAllVideos();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
