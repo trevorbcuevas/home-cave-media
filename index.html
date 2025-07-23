@@ -62,10 +62,23 @@
       margin: auto;
     }
 
+    @media (min-width: 768px) {
+      .video-grid {
+        grid-template-columns: repeat(6, 1fr); /* 6 equal columns */
+      }
+
+      .video-thumb.vertical {
+        grid-column: span 2; /* Each vertical takes 2 of 6 */
+      }
+
+      .video-thumb.horizontal {
+        grid-column: span 3; /* Each horizontal takes 3 of 6 */
+      }
+    }
+
     .video-thumb {
       position: relative;
       width: 100%;
-      padding-bottom: 56.25%;
       border-radius: 16px;
       overflow: hidden;
       background-color: #fff;
@@ -103,6 +116,15 @@
 
     .video-thumb:hover::after {
       background: rgba(0, 0, 0, 0.15);
+    }
+
+    /* Aspect Ratios */
+    .video-thumb.vertical {
+      padding-bottom: 177.77%; /* 9:16 */
+    }
+
+    .video-thumb.horizontal {
+      padding-bottom: 56.25%; /* 16:9 */
     }
 
     .btn {
@@ -181,25 +203,25 @@
     </nav>
   </header>
 
-  <!-- Industries Grid -->
+  <!-- Video Grid -->
   <section class="video-grid">
-    <div class="video-thumb">
-      <img src="https://via.placeholder.com/640x360?text=Tourism+%26+Travel" alt="Tourism and Travel" />
+    <!-- Vertical Reels -->
+    <div class="video-thumb vertical">
+      <img src="https://via.placeholder.com/360x640?text=Vertical+Reel+1" alt="Vertical Reel 1" />
     </div>
-    <div class="video-thumb">
-      <img src="https://via.placeholder.com/640x360?text=Real+Estate" alt="Real Estate" />
+    <div class="video-thumb vertical">
+      <img src="https://via.placeholder.com/360x640?text=Vertical+Reel+2" alt="Vertical Reel 2" />
     </div>
-    <div class="video-thumb">
-      <img src="https://via.placeholder.com/640x360?text=Food+%26+Beverage" alt="Food and Beverage" />
+    <div class="video-thumb vertical">
+      <img src="https://via.placeholder.com/360x640?text=Vertical+Reel+3" alt="Vertical Reel 3" />
     </div>
-    <div class="video-thumb">
-      <img src="https://via.placeholder.com/640x360?text=Fashion+%26+Lifestyle" alt="Fashion and Lifestyle" />
+
+    <!-- Horizontal Videos -->
+    <div class="video-thumb horizontal">
+      <img src="https://via.placeholder.com/640x360?text=Horizontal+Video+1" alt="Horizontal Video 1" />
     </div>
-    <div class="video-thumb">
-      <img src="https://via.placeholder.com/640x360?text=Events+%26+Entertainment" alt="Events and Entertainment" />
-    </div>
-    <div class="video-thumb">
-      <img src="https://via.placeholder.com/640x360?text=Local+Retail+Shops" alt="Local Retail Shops" />
+    <div class="video-thumb horizontal">
+      <img src="https://via.placeholder.com/640x360?text=Horizontal+Video+2" alt="Horizontal Video 2" />
     </div>
   </section>
 
