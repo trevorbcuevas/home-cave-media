@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Coastal Scale Agency</title>
 
   <!-- Google Font: Inter -->
@@ -64,15 +64,15 @@
 
     @media (min-width: 768px) {
       .video-grid {
-        grid-template-columns: repeat(6, 1fr); /* 6 equal columns */
+        grid-template-columns: repeat(6, 1fr);
       }
 
       .video-thumb.vertical {
-        grid-column: span 2; /* Each vertical takes 2 of 6 */
+        grid-column: span 2;
       }
 
       .video-thumb.horizontal {
-        grid-column: span 3; /* Each horizontal takes 3 of 6 */
+        grid-column: span 3;
       }
     }
 
@@ -92,6 +92,17 @@
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     }
 
+    /* Thumbnail image */
+    .video-thumb img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+      user-select: none;
+    }
+
+    /* Video initially hidden */
     .video-thumb video {
       position: absolute;
       top: 0;
@@ -99,9 +110,18 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
+      display: none;
       border-radius: 16px;
       background-color: black;
+    }
+
+    /* Show video when playing */
+    .video-thumb.playing video {
+      display: block;
+    }
+
+    .video-thumb.playing img {
+      display: none;
     }
 
     .video-thumb::after {
@@ -117,6 +137,31 @@
 
     .video-thumb:hover::after {
       background: rgba(0, 0, 0, 0.15);
+    }
+
+    /* Overlay text */
+    .video-thumb .overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-weight: 700;
+      font-size: 1.25rem;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0.4em 1em;
+      border-radius: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 2;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .video-thumb:hover .overlay {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     /* Aspect Ratios */
@@ -222,49 +267,51 @@
   <!-- Video Grid -->
   <section class="video-grid">
     <!-- Vertical Reels -->
-    <div class="video-thumb vertical">
+    <div class="video-thumb vertical" data-video="reel1">
+      <img src="thumbnails/reel1.jpg" alt="Reel 1 thumbnail" draggable="false" />
       <video src="videos/reel1.mp4" playsinline></video>
+      <div class="overlay">Click to Watch</div>
     </div>
-    <div class="video-thumb vertical">
+    <div class="video-thumb vertical" data-video="reel2">
+      <img src="thumbnails/reel2.jpg" alt="Reel 2 thumbnail" draggable="false" />
       <video src="videos/reel2.mp4" playsinline></video>
+      <div class="overlay">Click to Watch</div>
     </div>
-    <div class="video-thumb vertical">
+    <div class="video-thumb vertical" data-video="reel3">
+      <img src="thumbnails/reel3.jpg" alt="Reel 3 thumbnail" draggable="false" />
       <video src="videos/reel3.mp4" playsinline></video>
+      <div class="overlay">Click to Watch</div>
     </div>
 
     <!-- Horizontal Videos -->
-    <div class="video-thumb horizontal">
+    <div class="video-thumb horizontal" data-video="horizontal1">
+      <img src="thumbnails/horizontal1.jpg" alt="Horizontal 1 thumbnail" draggable="false" />
       <video src="videos/horizontal1.mp4" playsinline></video>
+      <div class="overlay">Click to Watch</div>
     </div>
-    <div class="video-thumb horizontal">
+    <div class="video-thumb horizontal" data-video="horizontal2">
+      <img src="thumbnails/horizontal2.jpg" alt="Horizontal 2 thumbnail" draggable="false" />
       <video src="videos/horizontal2.mp4" playsinline></video>
+      <div class="overlay">Click to Watch</div>
     </div>
   </section>
 
   <!-- Services -->
   <section class="section" id="services">
     <h2>What We Do</h2>
-    <p>
-      We specialize in full-funnel marketing for modern brands. Our services include:
-    </p>
+    <p>We specialize in full-funnel marketing for modern brands. Our services include:</p>
     <ul>
       <li>
         Premium Video Production
-        <p>
-          Create high-quality videos that capture attention, tell your brand story, and drive engagement across platforms.
-        </p>
+        <p>Create high-quality videos that capture attention, tell your brand story, and drive engagement across platforms.</p>
       </li>
       <li>
         Paid Ad Management (Meta, Google, TikTok)
-        <p>
-          Optimize your ad spend by targeting the right audience on top platforms, increasing conversions and maximizing ROI.
-        </p>
+        <p>Optimize your ad spend by targeting the right audience on top platforms, increasing conversions and maximizing ROI.</p>
       </li>
       <li>
         Social Media Promotion & Lead Tracking
-        <p>
-          We grow brands by creating scroll-stopping content and promoting it across social platforms — while tracking leads and engagement to measure real growth.
-        </p>
+        <p>We grow brands by creating scroll-stopping content and promoting it across social platforms — while tracking leads and engagement to measure real growth.</p>
       </li>
     </ul>
   </section>
@@ -272,81 +319,10 @@
   <!-- About -->
   <section class="section" id="about">
     <h2>About Us</h2>
-    <p>
-      We're a two-man team of creatives and strategists passionate about crafting clean, effective marketing. With deep roots in California's coast and a background in scaling local and national brands, we're built for results and aesthetics alike.
-    </p>
+    <p>We're a two-man team of creatives and strategists passionate about crafting clean, effective marketing. With deep roots in California's coast and a background in scaling local and national brands, we're built for results and aesthetics alike.</p>
   </section>
 
   <!-- Contact -->
   <section class="section" id="contact">
     <h2>Let’s Connect</h2>
-    <p>
-      Email us at <a href="mailto:hello@coastalscale.com">hello@coastalscale.com</a> or message us on Instagram @coastalscale.
-    </p>
-    <a class="btn" href="mailto:hello@coastalscale.com">Get In Touch</a>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    &copy; Coastal Scale Agency
-  </footer>
-
-  <script>
-    document.querySelectorAll('.video-thumb video').forEach(video => {
-      // Pause and mute initially (for autoplay policies)
-      video.pause();
-      video.muted = true;
-
-      video.parentElement.addEventListener('click', async () => {
-        if (video.paused) {
-          try {
-            video.muted = false; // unmute on user interaction
-            await video.play();
-
-            if (video.requestFullscreen) {
-              await video.requestFullscreen();
-            } else if (video.webkitRequestFullscreen) {
-              await video.webkitRequestFullscreen();
-            } else if (video.msRequestFullscreen) {
-              await video.msRequestFullscreen();
-            }
-
-            video.classList.add('fullscreen');
-          } catch (err) {
-            console.error("Fullscreen or play request failed:", err);
-          }
-        } else {
-          video.pause();
-          video.muted = true;
-
-          if (document.fullscreenElement || document.webkitFullscreenElement) {
-            if (document.exitFullscreen) {
-              document.exitFullscreen();
-            } else if (document.webkitExitFullscreen) {
-              document.webkitExitFullscreen();
-            }
-          }
-
-          video.classList.remove('fullscreen');
-        }
-      });
-
-      // Remove fullscreen class and mute video if fullscreen exited manually
-      document.addEventListener('fullscreenchange', () => {
-        if (!document.fullscreenElement) {
-          video.classList.remove('fullscreen');
-          video.muted = true;
-          video.pause();
-        }
-      });
-      document.addEventListener('webkitfullscreenchange', () => {
-        if (!document.webkitFullscreenElement) {
-          video.classList.remove('fullscreen');
-          video.muted = true;
-          video.pause();
-        }
-      });
-    });
-  </script>
-</body>
-</html>
+    <p
