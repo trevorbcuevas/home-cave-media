@@ -85,25 +85,20 @@
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
+      height: auto;
     }
 
-    .video-thumb:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    /* Force aspect ratios */
+    .video-thumb.vertical {
+      aspect-ratio: 9 / 16;
     }
 
-    /* Thumbnail image */
-    .video-thumb img {
-      display: block;
-      width: 100%;
-      height: auto; /* Maintain natural aspect ratio */
-      object-fit: cover;
-      border-radius: 16px;
-      user-select: none;
-      pointer-events: none;
+    .video-thumb.horizontal {
+      aspect-ratio: 16 / 9;
     }
 
-    /* Video initially hidden */
+    /* Thumbnail image and video fill container */
+    .video-thumb img,
     .video-thumb video {
       position: absolute;
       top: 0;
@@ -111,18 +106,27 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: none;
       border-radius: 16px;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .video-thumb video {
+      display: none;
       background-color: black;
     }
 
-    /* Show video when playing */
     .video-thumb.playing video {
       display: block;
     }
 
     .video-thumb.playing img {
       display: none;
+    }
+
+    .video-thumb:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     }
 
     .video-thumb::after {
@@ -165,16 +169,7 @@
       pointer-events: auto;
     }
 
-    /* Aspect Ratios */
-    .video-thumb.vertical {
-      padding-bottom: 177.77%; /* 9:16 */
-    }
-
-    .video-thumb.horizontal {
-      padding-bottom: 56.25%; /* 16:9 */
-    }
-
-    /* Fullscreen adjustments */
+    /* Fullscreen video styling */
     video.fullscreen {
       object-fit: contain !important;
       background-color: black;
