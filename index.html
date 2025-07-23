@@ -92,7 +92,7 @@
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     }
 
-    .video-thumb img {
+    .video-thumb video {
       position: absolute;
       top: 0;
       left: 0;
@@ -217,21 +217,21 @@
   <section class="video-grid">
     <!-- Vertical Reels -->
     <div class="video-thumb vertical">
-      <video src="videos/reel1.mp4" autoplay muted loop playsinline></video>
+      <video src="videos/reel1.mp4" muted loop playsinline></video>
     </div>
     <div class="video-thumb vertical">
-      <video src="videos/reel2.mp4" autoplay muted loop playsinline></video>
+      <video src="videos/reel2.mp4" muted loop playsinline></video>
     </div>
     <div class="video-thumb vertical">
-      <video src="videos/reel3.mp4" autoplay muted loop playsinline></video>
+      <video src="videos/reel3.mp4" muted loop playsinline></video>
     </div>
 
     <!-- Horizontal Videos -->
     <div class="video-thumb horizontal">
-      <video src="videos/horizontal1.mp4" autoplay muted loop playsinline></video>
+      <video src="videos/horizontal1.mp4" muted loop playsinline></video>
     </div>
     <div class="video-thumb horizontal">
-      <video src="videos/horizontal2.mp4" autoplay muted loop playsinline></video>
+      <video src="videos/horizontal2.mp4" muted loop playsinline></video>
     </div>
   </section>
 
@@ -282,4 +282,41 @@
 
   <!-- Footer -->
   <footer>
-    &copy;
+    &copy; 2025 Coastal Scale Agency
+  </footer>
+
+  <script>
+    document.querySelectorAll('.video-thumb video').forEach(video => {
+      // Make sure video is paused initially
+      video.pause();
+
+      video.parentElement.addEventListener('click', async () => {
+        if (video.paused) {
+          try {
+            await video.play();
+            if (video.requestFullscreen) {
+              await video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) { /* Safari */
+              await video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { /* IE11 */
+              await video.msRequestFullscreen();
+            }
+          } catch (err) {
+            console.error("Fullscreen or play request failed:", err);
+          }
+        } else {
+          video.pause();
+          if (document.fullscreenElement || document.webkitFullscreenElement) {
+            if (document.exitFullscreen) {
+              document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+              document.webkitExitFullscreen();
+            }
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
