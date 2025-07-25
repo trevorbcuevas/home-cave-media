@@ -23,6 +23,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    /* Header */
     header {
       display: flex;
       justify-content: space-between;
@@ -53,6 +54,14 @@
       color: var(--accent);
     }
 
+    /* Intro Section */
+    .section {
+      max-width: 1200px;
+      margin: 2rem auto 0;
+      text-align: center;
+    }
+
+    /* Video Grid */
     .video-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -85,10 +94,8 @@
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
-      height: auto;
     }
 
-    /* Force aspect ratios */
     .video-thumb.vertical {
       aspect-ratio: 9 / 16;
     }
@@ -97,7 +104,6 @@
       aspect-ratio: 16 / 9;
     }
 
-    /* Thumbnail image and video fill container */
     .video-thumb img,
     .video-thumb video {
       position: absolute;
@@ -144,8 +150,7 @@
       background: rgba(0, 0, 0, 0.15);
     }
 
-    /* Overlay text */
-    .video-thumb .overlay {
+    .overlay {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -157,7 +162,6 @@
       padding: 0.4em 1em;
       border-radius: 8px;
       opacity: 0;
-      pointer-events: none;
       transition: opacity 0.3s ease;
       z-index: 2;
       user-select: none;
@@ -166,41 +170,39 @@
 
     .video-thumb:hover .overlay {
       opacity: 1;
-      pointer-events: auto;
     }
 
-    /* Fullscreen video styling */
     video.fullscreen {
       object-fit: contain !important;
       background-color: black;
     }
 
-.pricing-card {
-  background: white;
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
-  border: 2px solid transparent;
-}
+    /* Pricing Cards */
+    .pricing-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+      border: 2px solid transparent;
+    }
 
-.pricing-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-  border-color: var(--accent);
-}
+    .pricing-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+      border-color: var(--accent);
+    }
 
-.pricing-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  transition: color 0.3s ease;
-}
+    .pricing-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s ease;
+    }
 
-.pricing-card:hover .pricing-title {
-  color: var(--accent);
-}
-
+    .pricing-card:hover .pricing-title {
+      color: var(--accent);
+    }
   </style>
 </head>
 
@@ -215,8 +217,8 @@
     </nav>
   </header>
 
-  <!-- Intro Header -->
-  <section class="section" style="max-width: 1200px; margin: 2rem auto 0; text-align: center;">
+  <!-- Intro Section -->
+  <section class="section">
     <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--primary); font-weight: 800;">
       Our Featured Videos
     </h1>
@@ -225,59 +227,62 @@
     </p>
   </section>
 
-<!-- Pricing Packages Section -->
-<section id="services" style="max-width: 1200px; margin: 4rem auto; padding: 0 2rem;">
-  <h2 style="text-align: center; font-size: 2.25rem; font-weight: 800; margin-bottom: 2rem;">Monthly Content Packages</h2>
-  <div style="display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-    
-    <!-- Starter Package -->
-    <div class="pricing-card">
-      <h3 class="pricing-title">Starter Package</h3>
-      <p style="color: var(--accent); font-weight: 700; font-size: 1.25rem;">$500/month</p>
-      <ul style="padding-left: 1.25rem; line-height: 1.6;">
-        <li>2 Reels per month (under 60s)</li>
-        <li>Up to 1 hour of filming</li>
-        <li>Basic editing (color, text, music)</li>
-        <li>1 revision per video</li>
-        <li>Optimized for Instagram Reels</li>
-      </ul>
-      <p style="margin-top: 1rem; font-size: 0.9rem; color: #555;"><strong>Add-ons:</strong> Extra reel $150, Drone +$100</p>
+  <!-- Pricing Section -->
+  <section id="services" style="max-width: 1200px; margin: 4rem auto; padding: 0 2rem;">
+    <h2 style="text-align: center; font-size: 2.25rem; font-weight: 800; margin-bottom: 2rem;">
+      Monthly Content Packages
+    </h2>
+    <div style="display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+      
+      <!-- Starter Package -->
+      <div class="pricing-card">
+        <h3 class="pricing-title">Starter Package</h3>
+        <p style="color: var(--accent); font-weight: 700; font-size: 1.25rem;">$500/month</p>
+        <ul style="padding-left: 1.25rem; line-height: 1.6;">
+          <li>2 Reels per month (under 60s)</li>
+          <li>Up to 1 hour of filming</li>
+          <li>Basic editing (color, text, music)</li>
+          <li>1 revision per video</li>
+          <li>Optimized for Instagram Reels</li>
+        </ul>
+        <p style="margin-top: 1rem; font-size: 0.9rem; color: #555;">
+          <strong>Add-ons:</strong> Extra reel $150, Drone +$100
+        </p>
+      </div>
+
+      <!-- Growth Package -->
+      <div class="pricing-card">
+        <h3 class="pricing-title">Growth Package</h3>
+        <p style="color: var(--accent); font-weight: 700; font-size: 1.25rem;">$1,200/month</p>
+        <ul style="padding-left: 1.25rem; line-height: 1.6;">
+          <li>6 Reels per month</li>
+          <li>Up to 3 hours of filming</li>
+          <li>Advanced editing & branding</li>
+          <li>2 revisions per video</li>
+          <li>Posting strategy & consulting</li>
+          <li>Vertical + horizontal formats</li>
+          <li>5 pro photos per shoot</li>
+        </ul>
+      </div>
+
+      <!-- Premium Package -->
+      <div class="pricing-card">
+        <h3 class="pricing-title">Premium Domination</h3>
+        <p style="color: var(--accent); font-weight: 700; font-size: 1.25rem;">$2,500/month</p>
+        <ul style="padding-left: 1.25rem; line-height: 1.6;">
+          <li>12 Reels per month</li>
+          <li>Up to 6 hours filming across days</li>
+          <li>Pro editing (VFX, motion graphics)</li>
+          <li>Unlimited revisions</li>
+          <li>Full content calendar + strategy</li>
+          <li>Posting support + hashtag research</li>
+          <li>Drone + 10+ pro photos included</li>
+          <li>Stories & BTS clips included</li>
+        </ul>
+      </div>
+
     </div>
-
-    <!-- Growth Package -->
-    <div class="pricing-card">
-      <h3 class="pricing-title">Growth Package</h3>
-      <p style="color: var(--accent); font-weight: 700; font-size: 1.25rem;">$1,200/month</p>
-      <ul style="padding-left: 1.25rem; line-height: 1.6;">
-        <li>6 Reels per month</li>
-        <li>Up to 3 hours of filming</li>
-        <li>Advanced editing & branding</li>
-        <li>2 revisions per video</li>
-        <li>Posting strategy & consulting</li>
-        <li>Vertical + horizontal formats</li>
-        <li>5 pro photos per shoot</li>
-      </ul>
-    </div>
-
-    <!-- Premium Package -->
-    <div class="pricing-card">
-      <h3 class="pricing-title">Premium Domination</h3>
-      <p style="color: var(--accent); font-weight: 700; font-size: 1.25rem;">$2,500/month</p>
-      <ul style="padding-left: 1.25rem; line-height: 1.6;">
-        <li>12 Reels per month</li>
-        <li>Up to 6 hours filming across days</li>
-        <li>Pro editing (VFX, motion graphics)</li>
-        <li>Unlimited revisions</li>
-        <li>Full content calendar + strategy</li>
-        <li>Posting support + hashtag research</li>
-        <li>Drone + 10+ pro photos included</li>
-        <li>Stories & BTS clips included</li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
+  </section>
 
   <!-- Video Grid -->
   <section class="video-grid" id="videoGrid">
@@ -311,6 +316,7 @@
     </div>
   </section>
 
+  <!-- Video Play Script -->
   <script>
     (() => {
       const videoGrid = document.getElementById('videoGrid');
@@ -330,16 +336,13 @@
       videoGrid.addEventListener('click', (e) => {
         const thumb = e.target.closest('.video-thumb');
         if (!thumb) return;
-
-        // If already playing, do nothing
         if (thumb.classList.contains('playing')) return;
 
         resetAllVideos();
 
         const video = thumb.querySelector('video');
         thumb.classList.add('playing');
-
-        video.muted = false; // unmute on play
+        video.muted = false;
         video.play();
 
         if (video.requestFullscreen) {
@@ -350,18 +353,15 @@
           video.msRequestFullscreen();
         }
 
-        // Add fullscreen class for styling
         video.classList.add('fullscreen');
       });
 
-      // Exit fullscreen or click outside any video resets the playing video
       document.addEventListener('click', (e) => {
         if (!e.target.closest('.video-thumb')) {
           resetAllVideos();
         }
       });
 
-      // Also reset when exiting fullscreen (user presses ESC or exits)
       document.addEventListener('fullscreenchange', () => {
         if (!document.fullscreenElement) {
           resetAllVideos();
