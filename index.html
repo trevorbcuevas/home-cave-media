@@ -325,6 +325,95 @@
 
   </section>
 
+<!-- Client Reviews Carousel -->
+<section id="client-reviews" style="max-width: 1000px; margin: 4rem auto; padding: 1rem 2rem;">
+  <h2 style="text-align: center; font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--primary);">
+    What Our Clients Say
+  </h2>
+  <div class="carousel-wrapper" aria-label="Client testimonials">
+    <div class="carousel">
+      <div class="review">
+        <p>"Home Cave Media took our social presence to the next level — the videos are stunning and our engagement skyrocketed!"</p>
+        <strong>– Sarah M., Boutique Owner</strong>
+      </div>
+      <div class="review">
+        <p>"Professional, timely, and creative. Their monthly content package is perfect for busy entrepreneurs."</p>
+        <strong>– Jason L., Fitness Coach</strong>
+      </div>
+      <div class="review">
+        <p>"The ROI reports helped us understand exactly how our video content is driving new customers. Highly recommend."</p>
+        <strong>– Emily R., Restaurant Manager</strong>
+      </div>
+      <div class="review">
+        <p>"From concept to final edit, the team at Home Cave Media is responsive and incredibly talented."</p>
+        <strong>– Carlos P., Real Estate Agent</strong>
+      </div>
+      <!-- Repeat reviews for smooth looping -->
+      <div class="review">
+        <p>"Home Cave Media took our social presence to the next level — the videos are stunning and our engagement skyrocketed!"</p>
+        <strong>– Sarah M., Boutique Owner</strong>
+      </div>
+      <div class="review">
+        <p>"Professional, timely, and creative. Their monthly content package is perfect for busy entrepreneurs."</p>
+        <strong>– Jason L., Fitness Coach</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+<style>
+  /* Carousel wrapper hides scrollbar and limits width */
+  .carousel-wrapper {
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Carousel is a flex container with all reviews in a row */
+  .carousel {
+    display: flex;
+    gap: 2rem;
+    animation: scroll-left 30s linear infinite;
+    /* pause animation on hover */
+  }
+  .carousel-wrapper:hover .carousel {
+    animation-play-state: paused;
+  }
+
+  .review {
+    flex: 0 0 auto;
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    min-width: 280px;
+    max-width: 320px;
+    color: var(--primary);
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .review p {
+    margin: 0 0 0.75rem 0;
+  }
+
+  .review strong {
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>
+</section>
+
+
 
   <!-- Intro Section -->
   <section class="section">
