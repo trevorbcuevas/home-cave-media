@@ -326,10 +326,34 @@
   </section>
 
 <!-- Client Reviews Carousel -->
-<section id="client-reviews" style="max-width: 1000px; margin: 4rem auto; padding: 1rem 2rem;">
+<section id="client-reviews" style="max-width: 1000px; margin: 4rem auto; padding: 1rem 2rem; overflow: hidden;">
+  <style>
+    #client-reviews .carousel {
+      display: flex;
+      gap: 2rem;
+      animation: scroll 25s linear infinite;
+    }
+
+    #client-reviews .review {
+      flex: 0 0 auto;
+      min-width: 300px;
+      max-width: 300px;
+    }
+
+    @keyframes scroll {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+
   <h2 style="text-align: center; font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--primary);">
     What Our Clients Say
   </h2>
+
   <div class="carousel-wrapper" aria-label="Client testimonials">
     <div class="carousel">
       <div class="review">
@@ -348,7 +372,8 @@
         <p>"From concept to final edit, the team at Home Cave Media is responsive and incredibly talented."</p>
         <strong>– Carlos P., Real Estate Agent</strong>
       </div>
-      <!-- Repeat reviews for smooth looping -->
+
+      <!-- duplicate all reviews for seamless looping -->
       <div class="review">
         <p>"Home Cave Media took our social presence to the next level — the videos are stunning and our engagement skyrocketed!"</p>
         <strong>– Sarah M., Boutique Owner</strong>
@@ -357,9 +382,18 @@
         <p>"Professional, timely, and creative. Their monthly content package is perfect for busy entrepreneurs."</p>
         <strong>– Jason L., Fitness Coach</strong>
       </div>
+      <div class="review">
+        <p>"The ROI reports helped us understand exactly how our video content is driving new customers. Highly recommend."</p>
+        <strong>– Emily R., Restaurant Manager</strong>
+      </div>
+      <div class="review">
+        <p>"From concept to final edit, the team at Home Cave Media is responsive and incredibly talented."</p>
+        <strong>– Carlos P., Real Estate Agent</strong>
+      </div>
     </div>
   </div>
 </section>
+
 
 <section>
 <style>
