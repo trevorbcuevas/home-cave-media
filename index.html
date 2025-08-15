@@ -374,6 +374,48 @@
 
 <section>
 <style>
+
+@media (max-width: 640px) {
+  /* Video Grid: 2 columns and better spacing */
+  .video-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  /* Video Panels */
+  .video-thumb {
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  }
+
+  /* Vertical videos: keep taller but not extreme */
+  .video-thumb.vertical {
+    aspect-ratio: 9 / 16;
+    min-height: 200px;
+  }
+
+  /* Horizontal videos: reduce height to fit nicely */
+  .video-thumb.horizontal {
+    aspect-ratio: 16 / 9;
+    min-height: 120px;
+  }
+
+  /* Overlay adjustments */
+  .video-thumb .overlay {
+    font-size: 1rem;
+    padding: 0.3em 0.6em;
+    white-space: normal;
+    text-align: center;
+  }
+
+  /* Reduce hover transform on mobile for better UX */
+  .video-thumb:hover {
+    transform: translateY(0);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  }
+}
+
   /* Carousel wrapper hides scrollbar and limits width */
   .carousel-wrapper {
     overflow: hidden;
