@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Home Cave Media | TikTok Shop Affiliate Management</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Inter', sans-serif; }
+    /* hide scrollbar for the horizontal carousel */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -22,23 +25,57 @@
     </div>
   </section>
 
-  <!-- Creator Carousel -->
-  <section class="py-24 px-6 bg-gray-50">
-  <div class="max-w-6xl mx-auto text-center">
-    <h2 class="text-4xl font-bold mb-6">Creators We Manage</h2>
-    <p class="text-lg text-gray-600 mb-12">Our affiliate creators drive real product sales through TikTok Shop</p>
-    <div class="flex overflow-x-auto space-x-6 pb-6 snap-x">
-      <a href="https://www.tiktok.com/@treyshops?_t=ZT-8zkvxmzgDGv&_r=1" target="_blank" class="min-w-[250px] bg-white rounded-3xl shadow-md p-8 snap-start hover:shadow-xl transition">
-        <img src="home-cave-media/images/treshops.jpeg" alt="Treyshops" class="w-24 h-24 mx-auto rounded-full mb-4 ring-4 ring-purple-200">
-        <h3 class="text-xl font-semibold">@treyshops</h3>
-        <p class="text-gray-600 text-sm">TikTok Shop Affiliate Creator</p>
-      </a>
+  <!-- Creator Carousel (implemented for multiple creators) -->
+  <section id="creators" class="py-24 px-6 bg-gray-50">
+    <div class="max-w-6xl mx-auto relative">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-6">Creators We Manage</h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">Our affiliate creators drive real product sales through TikTok Shop</p>
+      </div>
+
+      <!-- Carousel controls -->
+      <button id="prevBtn" aria-label="previous" class="absolute left-2 top-1/2 -translate-y-1/2 z-20 hidden md:inline-flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md hover:scale-105 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-purple-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <button id="nextBtn" aria-label="next" class="absolute right-2 top-1/2 -translate-y-1/2 z-20 hidden md:inline-flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md hover:scale-105 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-purple-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+
+      <!-- Scrollable track -->
+      <div id="carousel" class="creators-carousel flex overflow-x-auto no-scrollbar gap-6 pb-6 snap-x snap-mandatory scroll-smooth px-4 md:px-0">
+        <!-- Creator card example 1 using your local profile picture -->
+        <a href="https://www.tiktok.com/@treyshops?_t=ZT-8zkvxmzgDGv&_r=1" target="_blank" class="creator-card min-w-[250px] sm:min-w-[280px] bg-white rounded-3xl shadow-md p-8 snap-start hover:shadow-xl transition flex-shrink-0">
+          <img src="home-cave-media/images/treyshops.jpeg" alt="Treyshops" class="w-24 h-24 mx-auto rounded-full mb-4 object-cover ring-4 ring-purple-200">
+          <h3 class="text-xl font-semibold text-center">@treyshops</h3>
+          <p class="text-gray-600 text-sm text-center mt-1">TikTok Shop Affiliate Creator</p>
+        </a>
+
+        <!-- Creator card example 2 (replace image path and handle) -->
+        <a href="#" target="_blank" class="creator-card min-w-[250px] sm:min-w-[280px] bg-white rounded-3xl shadow-md p-8 snap-start hover:shadow-xl transition flex-shrink-0">
+          <img src="home-cave-media/images/creator2.jpeg" alt="Creator two" class="w-24 h-24 mx-auto rounded-full mb-4 object-cover ring-4 ring-purple-200">
+          <h3 class="text-xl font-semibold text-center">@creator_two</h3>
+          <p class="text-gray-600 text-sm text-center mt-1">Affiliate Creator</p>
+        </a>
+
+        <!-- Creator card example 3 (replace image path and handle) -->
+        <a href="#" target="_blank" class="creator-card min-w-[250px] sm:min-w-[280px] bg-white rounded-3xl shadow-md p-8 snap-start hover:shadow-xl transition flex-shrink-0">
+          <img src="home-cave-media/images/creator3.jpeg" alt="Creator three" class="w-24 h-24 mx-auto rounded-full mb-4 object-cover ring-4 ring-purple-200">
+          <h3 class="text-xl font-semibold text-center">@creator_three</h3>
+          <p class="text-gray-600 text-sm text-center mt-1">Affiliate Creator</p>
+        </a>
+
+        <!-- Add more creator cards by duplicating any of the anchor blocks above and updating the image and handle -->
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- For Creators -->
-  <section id="creators" class="py-24 px-6 bg-white">
+  <section class="py-24 px-6 bg-white">
     <div class="max-w-5xl mx-auto text-center">
       <h2 class="text-4xl font-bold mb-6">For Creators</h2>
       <p class="text-lg text-gray-600 mb-12">Earn more with TikTok Shop by joining our managed network of affiliate creators</p>
@@ -64,7 +101,7 @@
   </section>
 
   <!-- For Brands -->
-  <section id="brands" class="py-24 px-6 bg-gray-50">
+  <section class="py-24 px-6 bg-gray-50">
     <div class="max-w-5xl mx-auto text-center">
       <h2 class="text-4xl font-bold mb-6">For Brands</h2>
       <p class="text-lg text-gray-600 mb-12">Get your products in front of thousands with TikTok affiliate creators who know how to sell</p>
@@ -94,14 +131,14 @@
     <div class="max-w-4xl mx-auto">
       <h2 class="text-4xl font-bold mb-6">Trusted by Creators and Brands</h2>
       <p class="text-lg mb-8 opacity-90">We’ve already driven thousands in GMV through affiliate campaigns and we’re just getting started</p>
-      <p class="text-2xl font-semibold">Over $3,000 GMV generated so far accross our creators</p>
+      <p class="text-2xl font-semibold">Over $3,000 GMV generated so far</p>
     </div>
-  </section>pa
+  </section>
 
   <!-- Contact Section -->
   <section class="py-24 px-6 bg-gray-50 text-center">
     <h2 class="text-4xl font-bold mb-6">Let’s Work Together</h2>
-    <p class="text-lg text-gray-600 mb-8">Whether you’re a creator a brand or a partner we’d love to connect</p>
+    <p class="text-lg text-gray-600 mb-8">Whether you’re a creator or a brand we’d love to connect</p>
     <a href="mailto:homecavemedia@gmail.com" class="bg-purple-700 text-white font-semibold px-10 py-5 rounded-2xl shadow-lg hover:bg-purple-800 transition">Contact Us</a>
   </section>
 
@@ -110,5 +147,50 @@
     <p>Email homecavemedia@gmail.com visit our website homecavemedia.com or DM us on Instagram @homecavemedia</p>
   </footer>
 
+  <!-- Carousel script -->
+  <script>
+    (function () {
+      const track = document.getElementById('carousel');
+      const prev = document.getElementById('prevBtn');
+      const next = document.getElementById('nextBtn');
+
+      // show controls on larger screens only
+      function updateNavVisibility() {
+        const controls = window.matchMedia('(min-width: 768px)');
+        if (controls.matches) {
+          prev.classList.remove('hidden');
+          next.classList.remove('hidden');
+        } else {
+          prev.classList.add('hidden');
+          next.classList.add('hidden');
+        }
+      }
+      updateNavVisibility();
+      window.addEventListener('resize', updateNavVisibility);
+
+      // scroll amount equals one card width including gap
+      function cardScrollAmount() {
+        const card = track.querySelector('.creator-card');
+        if (!card) return track.clientWidth * 0.8;
+        const style = getComputedStyle(card);
+        const marginRight = parseFloat(style.marginRight || 0);
+        return Math.round(card.offsetWidth + marginRight);
+      }
+
+      prev.addEventListener('click', () => {
+        track.scrollBy({ left: -cardScrollAmount(), behavior: 'smooth' });
+      });
+      next.addEventListener('click', () => {
+        track.scrollBy({ left: cardScrollAmount(), behavior: 'smooth' });
+      });
+
+      // optional: allow left and right arrow keys when carousel is focused
+      track.setAttribute('tabindex', '0');
+      track.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') track.scrollBy({ left: -cardScrollAmount(), behavior: 'smooth' });
+        if (e.key === 'ArrowRight') track.scrollBy({ left: cardScrollAmount(), behavior: 'smooth' });
+      });
+    })();
+  </script>
 </body>
 </html>
